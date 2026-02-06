@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sistema de compra de entradas para películas">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine - Compra de Entradas</title>
+    <link rel="stylesheet" href="CSS/estilos.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="JS/Usuario.js"></script>
+    <script defer src="JS/Pelicula.js"></script>
+    <script defer src="JS/Modales.js"></script>
+    <script defer src="JS/ModalCompra.js"></script>
+    <script defer src="JS/Sesion.js"></script>
+    <script defer src="JS/App.js"></script>
+</head>
+<body>
+    <header>
+        <button id="btnCerrarSesion" class="btn-cerrar-sesion">Cerrar sesión</button>
+        <nav>
+            <div class="div1">
+                <h1>Bienvenido al Cine</h1>
+                <form id="formularioUsuario">
+                    <label for="nombre">Nombre:
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
+                    </label>
+                    <label for="edad">Edad:
+                        <input type="number" id="edad" name="edad" placeholder="Ingrese su edad" min="1" max="120" required>
+                    </label>
+                    <label for="email">Email:
+                        <input type="email" id="email" name="email" placeholder="Ingrese su email" required>
+                    </label>
+                    <button type="submit" id="btnIngresar">Ingresar</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="div2" id="seccionPeliculas">
+            <h2>Películas en cartelera</h2>
+            <div class="contenedor-peliculas">
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de compra de entradas -->
+    <div id="modalCompra" class="modal">
+        <div class="modal-contenido">
+            <button id="btnCerrarModal" class="btn-cerrar-modal">&times;</button>
+            <h2 id="nombrePeliculaModal">Nombre de la película</h2>
+            <form id="formularioCompra">
+                <label for="dia">Selecciona un día:
+                    <select id="dia" name="dia" required>
+                        <option value="">Seleccionar día</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+                </label>
+                <label for="horario">Selecciona un horario:
+                    <select id="horario" name="horario" required>
+                        <option value="">Seleccionar horario</option>
+                        <option value="14:00">14:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="19:00">19:00</option>
+                        <option value="21:30">21:30</option>
+                    </select>
+                </label>
+                <label for="cantidad">Cantidad de entradas:
+                    <input type="number" id="cantidad" name="cantidad" min="1" max="10" value="1" required>
+                </label>
+                <div id="resumenCompra" class="resumen-compra">
+                    <p><strong>Precio por entrada:</strong> $5000.00</p>
+                    <p><strong>Total:</strong> $<span id="totalPrecio">5000.00</span></p>
+                </div>
+                <button type="submit" id="btnConfirmarCompra" class="btn-confirmar">Confirmar compra</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de validación de edad -->
+    <div id="modalValidacionEdad" class="modal-alerta">
+        <div class="modal-alerta-contenido">
+            <h2 id="mensajeValidacion">Mensaje</h2>
+            <p id="detalleValidacion">Detalle</p>
+            <button id="btnCerrarValidacion" class="btn-cerrar-alerta">Entendido</button>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación de cierre de sesión -->
+    <div id="modalConfirmacionCierre" class="modal-alerta">
+        <div class="modal-alerta-contenido">
+            <h2>Cerrar sesión</h2>
+            <p>¿Está seguro de que desea cerrar sesión?</p>
+            <div class="botones-confirmacion">
+                <button id="btnConfirmarCierre" class="btn-confirmar-si">Sí, cerrar sesión</button>
+                <button id="btnCancelarCierre" class="btn-cancelar-no">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación de compra -->
+    <div id="modalConfirmacionCompra" class="modal-alerta">
+        <div class="modal-alerta-contenido">
+            <h2>Resumen de compra</h2>
+            <div id="detalleCompra" class="detalle-compra"></div>
+            <div class="botones-confirmacion">
+                <button id="btnConfirmarCompraFinal" class="btn-confirmar-si">Confirmar compra</button>
+                <button id="btnCancelarCompra" class="btn-cancelar-no">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de éxito -->
+    <div id="modalExito" class="modal-alerta">
+        <div class="modal-alerta-contenido">
+            <h2 id="tituloExito">Exito</h2>
+            <p id="mensajeExito">Mensaje de exito</p>
+            <button id="btnCerrarExito" class="btn-cerrar-alerta">Aceptar</button>
+        </div>
+    </div>
+
+    <!-- Modal de error -->
+    <div id="modalError" class="modal-alerta">
+        <div class="modal-alerta-contenido error">
+            <h2>Error</h2>
+            <p id="mensajeError">Mensaje de error</p>
+            <button id="btnCerrarError" class="btn-cerrar-alerta">Entendido</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Sistema de Cine. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

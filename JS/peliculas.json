@@ -1,0 +1,26 @@
+[
+  {
+    "id": "civilWar",
+    "titulo": "Civil War",
+    "edadRequerida": 18,
+    "poster": "Imagenes/Civil war.jpg"
+  },
+  {
+    "id": "ironman",
+    "titulo": "Ironman",
+    "edadRequerida": 25,
+    "poster": "Imagenes/Ironman.jpg"
+  },
+  {
+    "id": "spiderman",
+    "titulo": "Spiderman",
+    "edadRequerida": 13,
+    "poster": "Imagenes/Spiderman.jpg"
+  },
+  {
+    "id": "thor",
+    "titulo": "Thor",
+    "edadRequerida": 15,
+    "poster": "Imagenes/Thor.jpg"
+  }
+]
